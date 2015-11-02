@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Nmapx\\": "src/",
+      "Nmapx\\Inidister\\": "src/Nmapx/Inidister/"
+    }
+  }
+}

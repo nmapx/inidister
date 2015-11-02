@@ -1,4 +1,5 @@
 {
+  "name": "nmapx/inidister",
   "autoload": {
     "psr-4": {
       "Nmapx\\": "src/",

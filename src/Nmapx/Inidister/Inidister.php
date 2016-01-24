@@ -5,8 +5,6 @@ namespace Nmapx\Inidister;
 use Nmapx\Inidister\Exceptions\ElementAlreadyExistException;
 use Nmapx\Inidister\Exceptions\ElementUnavailableException;
 use Nmapx\Inidister\Exceptions\FileNotCopiedException;
-use Nmapx\Inidister\Exceptions\NameAlreadyDistedException;
-use Nmapx\Inidister\Exceptions\NameAlreadyUndistedException;
 use Nmapx\Inidister\Interfaces\InidisterInterface;
 use Nmapx\Inidister\Utils\Parser;
 
@@ -26,23 +24,24 @@ class Inidister implements InidisterInterface
      */
     public function __construct(array $dirs = [])
     {
-        foreach ($dirs as $dir) {
-            $this->add($dir);
+        foreach ($dirs as $dir => $dest) {
+            $this->add($dir, $dest);
         }
     }
 
     /**
      * @param string $dir
+     * @param string $dest
      * @return $this
      * @throws ElementAlreadyExistException
      */
-    public function add($dir)
+    public function add($dir, $dest)
     {
         if (array_key_exists($dir, $this->collection)) {
             throw new ElementAlreadyExistException;
         }
 
-        $this->collection[$dir] = null;
+        $this->collection[$dir] = $dest;
 
         return $this;
     }
@@ -65,59 +64,31 @@ class Inidister implements InidisterInterface
 
     public function execute()
     {
-        foreach ($this->collection as $file => $value) {
-            if (!file_exists($this->nameWithoutDist($file))) {
-                $this->copyFromDist($file);
+        foreach ($this->collection as $file => $dest) {
+            if (!file_exists($dest)) {
+                $this->copyFromDist($file, $dest);
                 continue;
             }
 
             $dist = Parser::parse(file($file));
-            $no_dist = Parser::parse(file($this->nameWithoutDist($file)));
+            $no_dist = Parser::parse(file($dest));
 
             $this->clean($dist, $no_dist)
                  ->update($dist, $no_dist)
-                 ->save($this->nameWithoutDist($file), $no_dist);
+                 ->save($dest, $no_dist);
         }
     }
 
     /**
-     * @param string $dir
+     * @param $dir
+     * @param $dest
      * @throws FileNotCopiedException
-     * @throws NameAlreadyUndistedException
      */
-    protected function copyFromDist($dir)
+    protected function copyFromDist($dir, $dest)
     {
-        if (true !== copy($dir, $this->nameWithoutDist($dir))) {
+        if (true !== copy($dir, $dest)) {
             throw new FileNotCopiedException;
         }
-    }
-
-    /**
-     * @param string $name
-     * @return string
-     * @throws NameAlreadyUndistedException
-     */
-    protected function nameWithoutDist($name)
-    {
-        if (false === strpos($name, '.dist')) {
-            throw new NameAlreadyUndistedException;
-        }
-
-        return str_replace('.dist', '', $name);
-    }
-
-    /**
-     * @param string $name
-     * @return string
-     * @throws NameAlreadyDistedException
-     */
-    protected function nameWithDist($name)
-    {
-        if (false !== strpos($name, '.dist')) {
-            throw new NameAlreadyDistedException;
-        }
-
-        return $name . '.dist';
     }
 
     /**

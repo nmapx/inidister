@@ -1,12 +1,8 @@
 {
     "name": "nmapx/inidister",
     "type": "library",
-    "description": "Create .ini file based on dist.",
-    "keywords": [
-        "ini",
-        "dist",
-        "parse"
-    ],
+    "description": "Use .dist.ini schema files to create .ini depending on your environment.",
+    "keywords": [ "ini", "dist", "parse", "schema", "environment" ],
     "autoload": {
         "psr-4": {
             "Nmapx\\Inidister\\": "src/Nmapx/Inidister/"

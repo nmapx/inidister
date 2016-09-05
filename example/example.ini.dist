@@ -1,6 +1,10 @@
 [example]
 key1        = value
 key2        = value
+[example][nested1]
+key1        = value
+[example][nested2]
+key1        = value
 key3        = value
 [example2]
 key1        = value

@@ -1,9 +1,19 @@
 {
-  "name": "nmapx/inidister",
-  "autoload": {
-    "psr-4": {
-      "Nmapx\\": "src/",
-      "Nmapx\\Inidister\\": "src/Nmapx/Inidister/"
+    "name": "nmapx/inidister",
+    "type": "library",
+    "description": "Create .ini file based on dist.",
+    "keywords": [
+        "ini",
+        "dist",
+        "parse"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nmapx\\Inidister\\": "src/Nmapx/Inidister/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.8",
+        "nmapx/inidister": "^0.2.0"
     }
-  }
 }

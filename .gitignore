@@ -1,4 +1,4 @@
 /.idea/
 /vendor/
 *.ini
-composer.lock
+!*.dist.ini

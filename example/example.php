@@ -8,7 +8,7 @@ use Nmapx\Inidister\Domain\{
 require __DIR__ . '/../vendor/autoload.php';
 
 $registry = new Registry();
-$registry->addDist(__DIR__ . '/example.ini.dist', __DIR__ . '/example.ini');
+$registry->addDist(__DIR__ . '/example.dist.ini', __DIR__ . '/example.ini');
 
 $inidister = new Inidister();
 $inidister->attach($registry)

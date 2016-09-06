@@ -9,7 +9,6 @@
         }
     },
     "require": {
-        "php": ">=7.0.8",
-        "nmapx/inidister": "^0.2.0"
+        "php": ">=7.0.8"
     }
 }

@@ -12,7 +12,7 @@ It works in the same way as Symfony YAML dist mechanism - it will produce a new 
 PHP support ini files out of the box ([parse_ini_file()](https://secure.php.net/manual/en/function.parse-ini-file.php)).
 
 ## Requirements
-* PHP >= 7.0.8 with **composer**
+* PHP >= 7.0 with **composer**
 
 ## Installation
 
@@ -22,6 +22,9 @@ composer require nmapx/inidister
 ```
 
 ## Usage
+It's simple - create a registry, then add some files.
+
+Attach the registry to Inidister object and execute it.
 ```php
 <?php
 
@@ -33,9 +36,51 @@ use Nmapx\Inidister\Domain\{
 require __DIR__ . '/../vendor/autoload.php';
 
 $registry = new Registry();
-$registry->addDist(__DIR__ . '/example.ini.dist', __DIR__ . '/example.ini');
-
 $inidister = new Inidister();
+
+$registry->add(__DIR__ . '/example.dist.ini', __DIR__ . '/example.ini');
 $inidister->attach($registry)
     ->execute();
 ```
+
+## Demo
+Example dist file:
+```ini
+[example1/nested1]
+;add some comments
+key1        = value1
+[example1/nested2]
+key1        = value1
+key2        = value2
+;comment here
+key3        = value3
+[example2]
+key1        = value1
+key2        = value2
+;and here
+[example3]
+key1        = value1
+```
+Result based on dist:
+```ini
+[example1/nested1]
+key1=value1
+
+[example1/nested2]
+key1=value1
+key2=value2
+key3=value3
+
+[example2]
+key1=value1
+key2=value2
+
+[example3]
+key1=value1
+```
+You can add some keys with default values to the dist, then regenerate the file.
+
+Your data won't disappear (or reset to default) from produced file as long as key exist in the schema (dist).
+
+## License
+MIT License. Check LICENSE file for details.

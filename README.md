@@ -1,3 +1,4 @@
+[![Packagist](https://img.shields.io/packagist/dt/nmapx/inidister.svg?maxAge=2592000&style=flat-square)]()
 [![Latest Stable Version](https://img.shields.io/github/release/nmapx/inidister.svg?style=flat-square)](https://github.com/nmapx/inidister/releases)
 [![License](https://img.shields.io/github/license/nmapx/inidister.svg?style=flat-square)](https://github.com/nmapx/inidister/blob/master/LICENSE)
 
@@ -83,4 +84,4 @@ You can add some keys with default values to the dist, then regenerate the file.
 Your data won't disappear (or reset to default) from produced file as long as key exist in the schema (dist).
 
 ## License
-MIT License. Check LICENSE file for details.
+MIT License. Check [LICENSE](https://github.com/nmapx/inidister/blob/master/LICENSE) for details.

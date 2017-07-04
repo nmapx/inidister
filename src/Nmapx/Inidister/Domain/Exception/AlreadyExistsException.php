@@ -1,6 +1,6 @@
 <?php
 
-namespace Nmapx\Inidister\Exception;
+namespace Nmapx\Inidister\Domain\Exception;
 
 class AlreadyExistsException extends InidisterException
 {

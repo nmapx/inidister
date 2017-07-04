@@ -2,7 +2,7 @@
 
 namespace Nmapx\Inidister\Domain;
 
-use Nmapx\Inidister\Exception\AlreadyExistsException;
+use Nmapx\Inidister\Domain\Exception\AlreadyExistsException;
 
 class Registry
 {

@@ -2,7 +2,7 @@
 
 namespace Nmapx\Inidister\Domain;
 
-use Nmapx\Inidister\Exception\EmptySetException;
+use Nmapx\Inidister\Domain\Exception\EmptySetException;
 
 class Inidister
 {

@@ -13,7 +13,7 @@ It works in the same way as Symfony YAML dist mechanism - it will produce a new 
 PHP support ini files out of the box ([parse_ini_file()](https://secure.php.net/manual/en/function.parse-ini-file.php)).
 
 ## Requirements
-* PHP >= 7.0 with **composer**
+* PHP >= 7.7 with **composer**
 
 ## Installation
 

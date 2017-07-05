@@ -8,12 +8,12 @@ Use .dist.ini schema files to create .ini depending on your environment.
 
 Inidister is a perfect solution to manage your config files.
 
-It works in the same way as Symfony YAML dist mechanism - it will produce a new file (or extend existing one with new data including default values).
+It works in the same way as Symfony YAML dist functionality - it will produce a new file (or extend existing one with new data using default values which you can change manually and it won't be replaced again).
 
 PHP support ini files out of the box ([parse_ini_file()](https://secure.php.net/manual/en/function.parse-ini-file.php)).
 
 ## Requirements
-* PHP >= 7.7 with **composer**
+* PHP >= 7.1 with **composer**
 
 ## Installation
 
@@ -23,13 +23,13 @@ composer require nmapx/inidister
 ```
 
 ## Usage
-It's simple - create a registry, then add some files.
+It's simple - create a registry, then add some files to it.
 
-Attach the registry to Inidister object and execute it.
+Attach the registry to Inidister object and execute it. You file(s) should be in place now.
 ```php
 <?php
 
-use Nmapx\Inidister\Domain\{
+use Nmapx\Inidister\Application\{
     Inidister,
     Registry
 };
@@ -37,9 +37,9 @@ use Nmapx\Inidister\Domain\{
 require __DIR__ . '/../vendor/autoload.php';
 
 $registry = new Registry();
-$inidister = new Inidister();
-
 $registry->add(__DIR__ . '/example.dist.ini', __DIR__ . '/example.ini');
+
+$inidister = new Inidister();
 $inidister->attach($registry)
     ->execute();
 ```
@@ -79,9 +79,9 @@ key2=value2
 [example3]
 key1=value1
 ```
-You can add some keys with default values to the dist, then regenerate the file.
+Now you can add some keys with default values to the dist, then regenerate the output file.
 
-Your data won't disappear (or reset to default) from produced file as long as key exist in the schema (dist).
+Your data won't disappear (or reset to default) from the output file as long as the key exist in the schema (dist).
 
 ## License
 MIT License. Check [LICENSE](https://github.com/nmapx/inidister/blob/master/LICENSE) for details.

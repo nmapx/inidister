@@ -1,87 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Nmapx\Inidister\Domain;
 
-use Nmapx\Inidister\Domain\Exception\EmptySetException;
+use Nmapx\Inidister\Domain\Registry\Registry;
 
-class Inidister
+interface Inidister
 {
-    /** @var Parser */
-    protected $parser;
+    function attach(Registry $registry): Inidister;
 
-    /** @var Writer */
-    protected $writer;
+    function detach(): Inidister;
 
-    /** @var Registry */
-    protected $registry;
-
-    public function __construct()
-    {
-        $this->parser = new Parser();
-        $this->writer = new Writer();
-        $this->detach();
-    }
-
-    public function attach(Registry $registry): self
-    {
-        $this->registry = $registry;
-
-        return $this;
-    }
-
-    public function execute(): self
-    {
-        if (null === $this->registry) {
-            throw new EmptySetException('Registry not found');
-        }
-
-        foreach ($this->registry->getList() as $dist => $ini) {
-            $this->writer->write($ini, $this->parser->create(
-                $this->update(
-                    $this->parser->parse($dist),
-                    $this->parser->parse($ini)
-                )
-            ));
-        }
-
-        return $this;
-    }
-
-    public function detach(): self
-    {
-        $this->registry = null;
-
-        return $this;
-    }
-
-    protected function update(array $dist, array $ini): array
-    {
-        foreach ($ini as $group => $content) {
-            if (!array_key_exists($group, $dist)) {
-                unset($ini[$group]);
-                continue;
-            }
-            foreach ($content as $key => $value) {
-                if (!array_key_exists($key, $dist[$group])) {
-                    unset($ini[$group][$key]);
-                    continue;
-                }
-            }
-        }
-
-        foreach ($dist as $group => $content) {
-            if (!array_key_exists($group, $ini)) {
-                $ini[$group] = $content;
-                continue;
-            }
-            foreach ($content as $key => $value) {
-                if (!array_key_exists($key, $ini[$group])) {
-                    $ini[$group][$key] = $value;
-                    continue;
-                }
-            }
-        }
-
-        return $ini;
-    }
+    function execute(): Inidister;
 }

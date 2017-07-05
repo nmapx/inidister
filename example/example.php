@@ -1,6 +1,6 @@
 <?php
 
-use Nmapx\Inidister\Domain\{
+use Nmapx\Inidister\Application\{
     Inidister,
     Registry
 };
@@ -8,8 +8,8 @@ use Nmapx\Inidister\Domain\{
 require __DIR__ . '/../vendor/autoload.php';
 
 $registry = new Registry();
-$inidister = new Inidister();
-
 $registry->add(__DIR__ . '/example.dist.ini', __DIR__ . '/example.ini');
+
+$inidister = new Inidister();
 $inidister->attach($registry)
     ->execute();

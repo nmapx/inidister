@@ -1,10 +1,12 @@
 <?php
 
-namespace Nmapx\Inidister\Domain;
+namespace Nmapx\Inidister\Application;
 
-class Parser
+use Nmapx\Inidister\Domain\Parser\Parser as ParserInterface;
+
+class Parser implements ParserInterface
 {
-    public function parse(string $filepath): array
+    public function stringToArray(string $filepath): array
     {
         if (!file_exists($filepath)) {
             return [];
@@ -13,9 +15,9 @@ class Parser
         return parse_ini_file($filepath, true);
     }
 
-    public function create(array $data): string
+    public function arrayToString(array $data): string
     {
-        $string = "";
+        $string = '';
         $count = count($data);
         $i = 1;
         foreach ($data as $group => $content) {

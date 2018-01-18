@@ -3,6 +3,7 @@
     "type": "library",
     "description": "Use .dist.ini schema files to create .ini depending on your environment.",
     "keywords": [ "ini", "dist", "parse", "schema", "environment" ],
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Nmapx\\Inidister\\": "src/Nmapx/Inidister/"

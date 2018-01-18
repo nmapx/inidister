@@ -1,4 +1,4 @@
-[![Packagist](https://img.shields.io/packagist/dt/nmapx/inidister.svg?maxAge=2592000&style=flat-square)]()
+[![Packagist](https://img.shields.io/packagist/dt/nmapx/inidister.svg?maxAge=2592000&style=flat-square)](https://packagist.org/packages/nmapx/inidister)
 [![Latest Stable Version](https://img.shields.io/github/release/nmapx/inidister.svg?style=flat-square)](https://github.com/nmapx/inidister/releases)
 [![License](https://img.shields.io/github/license/nmapx/inidister.svg?style=flat-square)](https://github.com/nmapx/inidister/blob/master/LICENSE)
 
